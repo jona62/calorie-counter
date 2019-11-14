@@ -2,13 +2,13 @@ import React from "react";
 import Cards from "./card";
 import {
   Card,
-  ListGroup,
   Container,
   ToggleButton,
-  ButtonGroup
+  ButtonGroup,
+  Accordion
 } from "react-bootstrap";
 
-const meals = require("../common/meals")
+const meals = require("../common/meals");
 
 class List extends React.Component {
   constructor() {
@@ -59,17 +59,17 @@ class List extends React.Component {
             </ToggleButton>
           </ButtonGroup>
         </div>
-        <Card className="text-center">
-          <Card.Body>
-            <Card.Title>Meals</Card.Title>
-            <Card.Text>Here are a list of meals</Card.Text>
-          </Card.Body>
-          <ListGroup>
-            {this.state.meals.map((item, i) => (
-              <Cards key={i} title={item.name} calories={item.calories}/>
-            ))}
-          </ListGroup>
-        </Card>
+          <Card className="text-center">
+            <Card.Body>
+              <Card.Title>Meals</Card.Title>
+              <Card.Text>Here are a list of meals</Card.Text>
+            </Card.Body>
+        <Accordion>
+              {this.state.meals.map((item, i) => (
+                <Cards key={i} title={item.name} calories={item.calories} obj={item} />
+              ))}
+        </Accordion>
+          </Card>
       </Container>
     );
   }

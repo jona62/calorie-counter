@@ -1,12 +1,16 @@
 import React from "react";
-import { ListGroup } from "react-bootstrap";
-
+import { Card, Accordion } from "react-bootstrap";
 
 const Cards = props => {
   return (
-    <ListGroup.Item>
-      {props && props.title + " : " + props.calories + "cal"}
-    </ListGroup.Item>
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey={`${props.key}`}>
+        {props && props.title + " : " + props.calories + "cal"}
+      </Accordion.Toggle>
+      <Accordion.Collapse eventKey={`${props.key}`}>
+        <Card.Body> { props.obj.nutrients && "fat: " + props.obj.nutrients["fat"]} </Card.Body>
+      </Accordion.Collapse>
+    </Card>
   );
 };
 
